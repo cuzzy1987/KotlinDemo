@@ -1,5 +1,0 @@
-kotlin
-
-    1. 原生控件 RecyclerView ViewPage TabLayout
-    2. 原生网络访问 anko协程 线程切换
-    3. android pie 不被允许明文网络服务 需配置网络安全文件 或降级使用或使用https

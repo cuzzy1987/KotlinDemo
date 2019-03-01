@@ -42,7 +42,11 @@ class HomeFragment : Fragment() {
      fun getGankNewsList() = doAsync{
          val news:List<GankNews> = DataLoader().getGankNewsList("data/all/20/2")
          uiThread{
-             recyclerView.adapter = KtListAdapter(news,context)
+             recyclerView.adapter = KtListAdapter(news,context){
+                 print("item => ${it}")
+//                 Toast.makeText(context,"${it}",Toast.LENGTH_LONG).show()
+                 WebActivity.startActivity(context ,it.url)
+             }
          }
      }
 

@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="70dp"
+              android:id="@+id/layout"
               xmlns:tools="http://schemas.android.com/tools"
     >
 
     <RelativeLayout
+        android:id="@+id/containerRl"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
         <ImageView
@@ -40,8 +42,14 @@
                 android:layout_marginTop="3dp"
                 android:textSize="12sp"
                 tools:text="描述"/>
-        </LinearLayout>
 
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            android:layout_alignParentBottom="true"
+            />
     </RelativeLayout>
 
 </LinearLayout>

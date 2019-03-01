@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity(),TabLayout.OnTabSelectedListener {
         val fragmentList: List<Fragment> = listOf(indexFragment,homeFragment,mineFragment)
         viewPager.adapter = ViewPagerAdapter(fragmentList,this.supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
+
     }
 
 
