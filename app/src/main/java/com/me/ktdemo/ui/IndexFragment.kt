@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.me.ktdemo.R
+import com.me.ktdemo.util.TextAppearanceUtil
+import kotlinx.android.synthetic.main.fragment_index.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,12 +25,16 @@ class IndexFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        initView()
         return inflater.inflate(R.layout.fragment_index, container, false)
     }
 
-    private fun initView() {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initView()
+    }
 
+    private fun initView() {
+        tv.text = TextAppearanceUtil.setTextDescRed(context,"承租方信息","(必填)")
     }
 
 
