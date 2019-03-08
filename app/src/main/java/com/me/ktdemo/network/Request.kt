@@ -8,7 +8,8 @@ import java.net.URL
 class Request(val url: String){
 
     companion object {
-        val BaseUrl = "http://gank.io/api/"
+        val BaseGankUrl = "http://gank.io/api/"
+        val BaseVoiceUlr = "http://bapi.xinli001.com/fm2/broadcast_list.json/?"
     }
 
     fun run(): String{

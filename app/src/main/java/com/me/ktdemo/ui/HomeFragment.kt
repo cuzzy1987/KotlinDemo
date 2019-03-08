@@ -2,52 +2,72 @@ package com.me.ktdemo.ui
 
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import com.me.ktdemo.R
-import com.me.ktdemo.adapter.KtListAdapter
-import com.me.ktdemo.entity.GankNews
-import com.me.ktdemo.network.DataLoader
+import com.me.ktdemo.adapter.ViewPagerAdapter
+import com.me.ktdemo.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_home.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() ,TabLayout.OnTabSelectedListener{
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+            = inflater.inflate(R.layout.fragment_home, container, false)
+
+    override fun initView() {
+        tabLayout.addOnTabSelectedListener(this)
+        setTab()
+        setItem()
+        viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
     }
 
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        getGankNewsList()
+    private fun setItem() {
+        tabLayout.getTabAt(0)?.customView = getTabView(0)
+        tabLayout.getTabAt(1)?.customView = getTabView(1)
     }
 
-     fun getGankNewsList() = doAsync{
-         val news:List<GankNews> = DataLoader().getGankNewsList("data/all/20/2")
-         uiThread{
-             recyclerView.adapter = KtListAdapter(news,context){
-                 print("item => ${it}")
-//                 Toast.makeText(context,"${it}",Toast.LENGTH_LONG).show()
-                 WebActivity.startActivity(context ,it.url)
-             }
-         }
-     }
+    private fun setTab() {
+        val fragmentList: List<Fragment> = listOf(ListFragment.newInstance("news"),ListFragment.newInstance("voice"))
+        viewPager.adapter = ViewPagerAdapter(fragmentList,activity!!.supportFragmentManager)
+        tabLayout.setupWithViewPager(viewPager)
 
+    }
+
+    fun getTabView(position: Int): View{
+        val view: View = LayoutInflater.from(context).inflate(R.layout.tab_item_layout,null) as View
+        val titleTv: TextView = view.findViewById(R.id.titleTv) as TextView
+        val iconIv: ImageView = view.findViewById(R.id.iconIv) as ImageView
+        iconIv.visibility = View.GONE
+        when(position){
+            0 ->{
+                titleTv.text = "看得见"
+                iconIv.setBackgroundResource(R.drawable.index)
+            }
+            1 ->{
+                titleTv.text="听得出"
+                iconIv.setBackgroundResource(R.drawable.service)
+            }
+
+            else -> print("-=hEEh=-")
+        }
+        return view
+    }
+
+    override fun onTabUnselected(tab: TabLayout.Tab?) {}
+    override fun onTabSelected(tab: TabLayout.Tab?) {
+        viewPager.currentItem = tab!!.position
+    }
+    override fun onTabReselected(tab: TabLayout.Tab?) {}
 }
