@@ -46,6 +46,7 @@ class HomeFragment : BaseFragment() ,TabLayout.OnTabSelectedListener{
     }
 
     fun getTabView(position: Int): View{
+        // 直接使用 anko 不起作用 可能有问题
         val view: View = LayoutInflater.from(context).inflate(R.layout.tab_item_layout,null) as View
         val titleTv: TextView = view.findViewById(R.id.titleTv) as TextView
         val iconIv: ImageView = view.findViewById(R.id.iconIv) as ImageView

@@ -21,7 +21,8 @@ class KtListAdapter(val items: List<Any>,val context:Context?,val onItemClickLis
             Int = items.size
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        println("item.toString ==> ${items[position].toString()}")
+        print("-=there=-")
+        println("item.toString ==> ${items[position]}")
         viewHolder.bind(items[position])
     }
 
@@ -34,7 +35,9 @@ class KtListAdapter(val items: List<Any>,val context:Context?,val onItemClickLis
             }else if(it is VoiceFMBean){
                 view.titleTV.text = it.speak
                 view.descTv.text = it.title
+
             }
+
 
             view.layout.setOnClickListener {
                 println("click")

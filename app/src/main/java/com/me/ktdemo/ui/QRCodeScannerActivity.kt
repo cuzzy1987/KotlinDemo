@@ -1,9 +1,10 @@
-package com.me.ktdemo.QRCode
+package com.me.ktdemo.ui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 
@@ -21,6 +22,8 @@ class QRCodeScannerActivity : AppCompatActivity() ,ZXingScannerView.ResultHandle
     override fun handleResult(rawResult: Result?) {
         toast(rawResult.toString())
         mZXingScannerView.resumeCameraPreview(this)
+        finish()
+        startActivity<ScanResultActivity>("content" to rawResult.toString() )
     }
 
 
@@ -35,7 +38,4 @@ class QRCodeScannerActivity : AppCompatActivity() ,ZXingScannerView.ResultHandle
         mZXingScannerView.stopCamera()
     }
 
-    fun requestPermission(){
-
-    }
 }

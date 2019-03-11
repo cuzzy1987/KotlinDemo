@@ -27,7 +27,9 @@
 
         <activity android:name=".ui.WebActivity">
         </activity>
-        <activity android:name=".QRCode.QRCodeScannerActivity">
+        <activity android:name=".ui.QRCodeScannerActivity">
+        </activity>
+        <activity android:name=".ui.ScanResultActivity">
         </activity>
     </application>
 

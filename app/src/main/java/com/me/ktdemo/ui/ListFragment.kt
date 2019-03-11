@@ -51,7 +51,6 @@ class ListFragment : BaseFragment() {
 
 
     fun getGankNewsList() = doAsync{
-        println("from is $from")
         val news:List<GankNews> = DataLoader().getGankNewsList("data/all/20/2")
         uiThread{
             recyclerView.adapter = KtListAdapter(news,context){

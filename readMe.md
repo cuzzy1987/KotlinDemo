@@ -7,14 +7,29 @@ kotlin
 
 cautions 
 
+    0. ? 变量是否可以为空  !!变量不可以为空  A?: B表示当对象值为null时那么会返回对象B
+
     1. kotlin anko 不可以在Fragment OnCreateView中直接使用控件名 （fvb）
     
     2. kotlin 不再支持三目运算 可转化为 if else处理 在两者作用域内 默认条件成立（有点实用）
     
     3. 关键字 apply Calls the specified function [block] with `this` value as its receiver and returns `this` value.
     
+    4. startActivity<SomeOtherActivity>(
+           "id" to 5,
+           "city" to "Denpasar"
+       ) @anko  
+           
     @des 关于 anko 的一些介绍 https://www.jianshu.com/p/c4558aa7c502
     @more https://github.com/Kotlin/anko/wiki/Anko-Commons-%E2%80%93-Dialogs
+
+
+
+note 
+
+    0. 监听应用内截屏 可收集文件名  
+    1. manifest https://blog.csdn.net/maosidiaoxian/article/details/42671999
+
 
 ContextWrapper 装饰者模式
 
@@ -23,6 +38,3 @@ ContextWrapper 装饰者模式
        但是装饰器可以给对应的操作添加相关功能
        
        
-(''')
-
-(''')
