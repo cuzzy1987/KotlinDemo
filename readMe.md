@@ -29,6 +29,25 @@ note
 
     0. 监听应用内截屏 可收集文件名  
     1. manifest https://blog.csdn.net/maosidiaoxian/article/details/42671999
+    2. glide提高图片质量的方法 
+       i. 全局设置 提高所有图片质量 
+          public class MyGlideModule implements GlideModule{  
+              @Override  
+              public void applyOptions(Context context, GlideBuilder builder) {  
+                  builder.setDecodeFormat(DecodeFormat.PREFER_ARGB_8888);  
+              }    
+              @Override  
+              public void registerComponents(Context context, Glide glide) {  
+          
+              }  
+          }
+          
+          添加在清单文件 mete-data下 
+          <meta-data  
+              android:name="youpackagename.MyGlideModule "  
+              android:value="GlideModule"/>
+          
+       i. Glide.with(context).load(url).asBitmap().format(PREFER_ARGB_8888)
 
 
 ContextWrapper 装饰者模式

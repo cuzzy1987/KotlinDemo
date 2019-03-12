@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import com.me.ktdemo.R
 import kotlinx.android.synthetic.main.activity_scan_result.*
 
+
+
 class ScanResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +19,8 @@ class ScanResultActivity : AppCompatActivity() {
     private fun initView() {
         backLl.setOnClickListener { finish() }
         tv.text = intent.getStringExtra("content")
+
+
     }
 
 

@@ -44,16 +44,28 @@ class IndexFragment : BaseFragment() {
     override fun initView() {
 //        tv.text = TextAppearanceUtil.setTextDescRed(context,"承租方信息","(必填)")
         recyclerView.layoutManager = LinearLayoutManager(context)
+
+        initRefreshLayout()
         getVoiceList()
         startScanner()
     }
 
+    private fun initRefreshLayout() {
+        refreshLayout.setOnRefreshListener {
+            getVoiceList()
+        }
+    }
+
     private fun getVoiceList() = doAsync{
-        val voiceList: List<VoiceFMBean> = DataLoader().getVoiceList("offset=0&speaker_id=0&tag=%E6%8A%91%E9%83%81%E7%97%87%E6%98%AF%E6%9D%A1%E9%BB%91%E7%8B%97&rows=10&key=046b6a2a43dc6ff6e770255f57328f89")
+        val voiceList: ArrayList<VoiceFMBean> = DataLoader().getVoiceList("offset=0&speaker_id=0&tag=%E6%8A%91%E9%83%81%E7%97%87%E6%98%AF%E6%9D%A1%E9%BB%91%E7%8B%97&rows=10&key=046b6a2a43dc6ff6e770255f57328f89")
         uiThread {
             recyclerView.adapter = KtListAdapter(voiceList,context){
-                print("item $it")
+//                val it = it as VoiceFMBean
+//                val intent = Intent(Intent.ACTION_SEND).setType("image/jepg")
+//                intent.putExtra(Intent.EXTRA_STREAM,Uri.parse(activity!!.re))
+//                startActivity(Intent.createChooser(intent,"图片"))
             }
+            if (refreshLayout.isRefreshing) refreshLayout.isRefreshing = false
         }
     }
 

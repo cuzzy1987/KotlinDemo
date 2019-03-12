@@ -10,12 +10,12 @@ import com.me.ktdemo.entity.VoiceFMBean
  */
 class DataLoader {
 
-   fun getGankNewsList(data: String): List<GankNews> {
+   fun getGankNewsList(data: String): ArrayList<GankNews> {
        val url = Request.BaseGankUrl+data
        return Gson().fromJson(Request(url).run(), DataList::class.java).results
    }
 
-    fun getVoiceList(data: String): List<VoiceFMBean>{
+    fun getVoiceList(data: String): ArrayList<VoiceFMBean>{
         val url = Request.BaseVoiceUlr+data
         return Gson().fromJson(Request(url).run(),DataList::class.java).data
     }

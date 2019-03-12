@@ -30,6 +30,11 @@
         <activity android:name=".ui.QRCodeScannerActivity">
         </activity>
         <activity android:name=".ui.ScanResultActivity">
+            <intent-filter >
+                <action android:name="android.intent.action.SEND"></action>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
         </activity>
     </application>
 

@@ -37,7 +37,7 @@ class NewsListFragment : BaseFragment() {
                 intent.type = "text/plain"
                 intent.putExtra(Intent.EXTRA_SUBJECT,it.who)
                 intent.putExtra(Intent.EXTRA_TEXT,it.desc)
-                intent = Intent.createChooser(intent,"share")
+                intent = Intent.createChooser(intent,"分享")
                 context!!.startActivity(intent)
             }
             print("item => ${it}")
